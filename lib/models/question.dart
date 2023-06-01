@@ -48,7 +48,7 @@ class Question {
   String toRawJson() => json.encode(toJson());
 
   factory Question.fromJson(Map<String, dynamic> json) => Question(
-    createDate: DateTime.parse((json["publicationDate"] as String).replaceAll('\t\r\n','')),
+    createDate: DateTime.parse((json["publicationDate"] as String).replaceAll('\t\r\n','')).add(Duration(hours: 2)),
     id: json["id"],
     title: json["title"],
     desc: json["desc"],
@@ -77,7 +77,7 @@ class Question {
   getStringDate(BuildContext context){
     return DateFormat('dd-MMM hh:mm a',context.locale.languageCode).format(createDate,);
   }
-  static getQuestions()async{
+  static Future<List<Question>> getQuestions()async{
     var res= await RestApiService.get(ApiPaths.getQuestions);
     if(res.statusCode==200){
       var decoded=jsonDecode(res.body);
@@ -85,7 +85,7 @@ class Question {
       return list;
     }
     else if (res.statusCode==204)
-      return [];
+      return [] ;
     else throw Exception('getQuestions error ${res.statusCode} ${res.body}');
   }
   Future<List<Answer>?>   getAnswers()async{

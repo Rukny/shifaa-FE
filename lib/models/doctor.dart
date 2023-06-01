@@ -229,12 +229,12 @@ class BookedDaySlot extends Equatable{
   String toRawJson() => json.encode(toJson());
 
   factory BookedDaySlot.fromJson(Map<String, dynamic> json) {
-    final format = DateFormat("yyyy-MM-dd hh:mm:ss a");
+    final format = DateFormat("yyyy-MM-dd h:mm:ss a");
 
     return BookedDaySlot(
     slotId: json["slot_id"],
-    slotStartTime: json["slot_start_time"] == null ? null : format.parse(json["slot_start_time"]),
-    slotEndTime: json["slot_end_time"] == null ? null : format.parse(json["slot_end_time"]),
+    slotStartTime: json["slot_start_time"] == null ? null : format.parseLoose(json["slot_start_time"].toString().toUpperCase()),
+    slotEndTime: json["slot_end_time"] == null ? null : format.parseLoose(json["slot_end_time"].toString().toUpperCase()),
     duration: json["duration"],
     booked: json["booked"],
     day: json["day"] == null ? null : Day.fromJson(json["day"]),

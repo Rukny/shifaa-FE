@@ -30,6 +30,8 @@
   "clear": "اخلاء",
   "questionTopic": "الموضوع: {}",
   "since": "منذ {} ساعة",
+  "sinceDays": "منذ {} ايام",
+  "sinceMinutes": "منذ {} دقيقة",
   "changeLang": "تغير لغة",
   "close": "اغلاق",
   "bookingConfDialog": "تم تأكيد موعدك بنجاح",
@@ -99,5 +101,6 @@
   "upcoming": "القادمة",
   "previous": "السابقة",
   "appointmentCancelSuccess": "لقد تم إلغاء الموعد بنجاح",
-  "appointmentCancelFailed": "لقد فشل إلغاء الموعد"
+  "appointmentCancelFailed": "لقد فشل إلغاء الموعد",
+  "success": "تمت إضافة السؤال بنجاح"
 }

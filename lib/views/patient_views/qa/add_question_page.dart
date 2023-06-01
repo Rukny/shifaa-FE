@@ -189,7 +189,7 @@ class _AddQuestionPageState extends State<AddQuestionPage> {
                         decoration: InputDecoration(
                             hintText: 'describeTitle'.tr(),
                             alignLabelWithHint: true,
-                            labelText: 'titleLabel',
+                            labelText: 'titleLabel'.tr(),
                             counter: Text('${title?.length ?? 0}/30'),
                             border: InputBorder.none),
                       ),
@@ -219,7 +219,7 @@ class _AddQuestionPageState extends State<AddQuestionPage> {
                         decoration: InputDecoration(
                             hintText: 'describeQuestion'.tr(),
                             alignLabelWithHint: true,
-                            labelText: 'questionLabel',
+                            labelText: 'questionLabel'.tr(),
                             counter: Text('${body?.length ?? 0}/500'),
                             border: InputBorder.none),
                       ),
@@ -276,6 +276,7 @@ class _AddQuestionPageState extends State<AddQuestionPage> {
                       body['title'] = formkey.currentState!.value['title'];
                       body['desc'] = formkey.currentState!.value['desc'];
                       body['anon'] = formkey.currentState!.value['anon'];
+                      body['date']=DateFormat('yyyy-MM-dd hh:mm:ss a').format(DateTime.now());
                       body['specialtyId'] =
                           formkey.currentState!.value['specialty'].id;
 

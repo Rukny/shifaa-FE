@@ -132,6 +132,7 @@ class DoctorHomePage extends StatelessWidget {
               ),
               child: Scaffold(
                 resizeToAvoidBottomInset: true,
+                extendBody: false,
                 appBar: AppBar(
                   backgroundColor: Colors.transparent,
                   centerTitle: true,

@@ -132,7 +132,7 @@ class LandingPage extends StatelessWidget {
                                       fontSize: 20,
                                       fontFamily: 'Rubik'),
                                 ),
-                                TextButton(
+                      /*          TextButton(
                                     onPressed: () {},
                                     child: Text(
                                       'more'.tr(),
@@ -140,7 +140,7 @@ class LandingPage extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                           fontSize: 16,
                                           fontFamily: 'Rubik'),
-                                    )),
+                                    )),*/
                               ],
                             ),
                           ),

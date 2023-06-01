@@ -119,11 +119,11 @@ if(selectedDaySlot==null)
 
       Map data={
           "operationDate": DateFormat('yyyy-MM-dd hh:mm:ss a').format(DateTime.now()),
-        "appointmentDate": DateFormat('yyyy-MM-dd hh:mm:ss a').format(selectedDaySlot!.selectedTimeSlot!.startTime) ,
+        "appointmentDate": DateFormat('yyyy-MM-dd hh:mm:ss a').format(selectedDaySlot!.selectedTimeSlot!.startTime).toUpperCase() ,
         "dayId": selectedDaySlot!.preferredDay.day.dayId,
 
-        "startTime": DateFormat('yyyy-MM-dd hh:mm:00 a').format(selectedDaySlot!.selectedTimeSlot!.startTime),
-        "endTime": DateFormat('yyyy-MM-dd hh:mm:00 a').format(selectedDaySlot!.selectedTimeSlot!.endTime),
+        "startTime": DateFormat('yyyy-MM-dd hh:mm:00 a').format(selectedDaySlot!.selectedTimeSlot!.startTime).toUpperCase(),
+        "endTime": DateFormat('yyyy-MM-dd hh:mm:00 a').format(selectedDaySlot!.selectedTimeSlot!.endTime).toUpperCase(),
         "doctorId": doctor.id,
         "patientId": context.read<UserProvider>().patient!.id
       };

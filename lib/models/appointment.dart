@@ -48,14 +48,14 @@ class Appointment {
     createDate: json["createDate"],
     id: json["id"],
     operationDate: json["operationDate"],
-    appointmentDate:DateFormat("yyyy-MM-dd hh:mm:ss a").parse(json["appointmentDate"])  ,
+    appointmentDate:DateFormat("yyyy-MM-dd hh:mm:ss a","en_US").parseLoose(json["appointmentDate"])  ,
     status: json["status"],
     startTime: json["startTime"],
     endTime: json["endTime"],
     bookedSlot: BookedSlot.fromJson(json["bookedSlot"]),
     doctor:json['doctor']==null ? null : Doctor.fromJson(json["doctor"]),
     patient:json['patient']==null?null: Patient.fromJson(json['patient']),
-    appointmentState:DateFormat("yyyy-MM-dd hh:mm:ss a").parse(json["appointmentDate"]).isAfter(DateTime.now())? 'upcoming':'previous'
+    appointmentState:DateFormat("yyyy-MM-dd hh:mm:ss a","en_US").parseLoose(json["appointmentDate"]).isAfter(DateTime.now())? 'upcoming':'previous'
   );
 
   Map<String, dynamic> toJson() => {

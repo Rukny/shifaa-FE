@@ -28,6 +28,7 @@ class MyBookingsPage extends StatelessWidget {
         builder: (context, child) => Consumer<MyBookingsProvider>(
           builder: (_, prov, child) {
             return Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(
                   height: 15.h,child:   Center(
@@ -129,82 +130,85 @@ class MyBookingsPage extends StatelessWidget {
                   SizedBox(height: 20.h,child: Center(child: Text('noAppointments'.tr())),),
 
                 if(prov.filteredAppointments.isNotEmpty)
-                ListView(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  children: prov.filteredAppointments
-                      .map((e) => Card(
-                              child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, right: 15, bottom: 1, top: 10),
-                                child: Row(
-                                  children: [
-                                    Card(
-                                      shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))),
-                                      color: AppConstants.green,
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 15),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text(
-                                              e.appointmentDate.day.toString(),
-                                              style: const TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                            Text(
-                                              DateFormat(
-                                                      'MMMM',
-                                                      context
-                                                          .locale.languageCode)
-                                                  .format(e.appointmentDate)
-                                                  .toString(),
-                                              style: const TextStyle(
-                                                  color: Colors.white),
-                                            )
-                                          ],
-                                        ),
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.symmetric(horizontal: 5),
+
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    shrinkWrap: true,
+
+                    children: prov.filteredAppointments
+                        .map((e) => Card(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 15.0, right: 15, bottom: 1, top: 10),
+                              child: Row(
+                                children: [
+                                  Card(
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))),
+                                    color: AppConstants.green,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 15),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            e.appointmentDate.day.toString(),
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          ),
+                                          Text(
+                                            DateFormat(
+                                                'MMMM',
+                                                context
+                                                    .locale.languageCode)
+                                                .format(e.appointmentDate)
+                                                .toString(),
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "${prov.getUserName(e, context)}",
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        if(prov.userType is Patient)
-                                          Text("${e.doctor!.specialty.getName(context)}"),
-                                        const SizedBox(height: 5,),
-                                        AutoSizeText(
-                                          formatCardDate
-                                              .format(e.appointmentDate)
-                                              .toString(),
-                                          style: const TextStyle(
-                                              color: AppConstants.aquamarine),
-                                        ),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    Column(
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "${prov.getUserName(e, context)}",
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      if(prov.userType is Patient)
+                                        Text("${e.doctor!.specialty.getName(context)}"),
+                                      const SizedBox(height: 5,),
+                                      AutoSizeText(
+                                        formatCardDate
+                                            .format(e.appointmentDate)
+                                            .toString(),
+                                        style: const TextStyle(
+                                            color: AppConstants.aquamarine),
+                                      ),
+                                    ],
+                                  ),
+                                  const Spacer(),
+                                  Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       IconButton(
@@ -232,9 +236,9 @@ class MyBookingsPage extends StatelessWidget {
                                           }
                                         },
                                         child: const Icon(
-                                              Icons.phone,
-                                              color: Colors.blueAccent,
-                                              size: 20,
+                                          Icons.phone,
+                                          color: Colors.blueAccent,
+                                          size: 20,
 
 
 
@@ -242,69 +246,71 @@ class MyBookingsPage extends StatelessWidget {
                                       )
 
                                     ],)
-                                  ],
-                                ),
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 5.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(
-                                      width: 12,
-                                    ),
-                                    Card(
-                                      shadowColor: Colors.white,
-                                      color: Colors.lightGreenAccent.shade700,
-                                      shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))),
-                                      child: Container(
-                                          margin: EdgeInsets.all(1),
-                                          width: 60,
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 0, vertical: 2),
-                                          child: Center(
-                                            child: AutoSizeText(
-                                              e.getStatus().tr(),
-                                              maxLines: 1,
-                                              style: const TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.white),
-                                            ),
-                                          )),
-                                    ),
-                                    const Spacer(),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20.0,right: 20,top: 10),
-                                      child: GestureDetector(
-                                          onTap: () async {
-                                        var cancelChoice=await    showDialog<bool?>(context: context, builder:(context) =>  AlertDialog(title: Text('cancelConfirmationTitle'.tr()),
-                                              content: Text('cancelConfirmationBody'.tr()),
-                                              actions: [
-                                                TextButton(onPressed: () {
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(
+                                    width: 12,
+                                  ),
+                                  Card(
+                                    shadowColor: Colors.white,
+                                    color: Colors.lightGreenAccent.shade700,
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))),
+                                    child: Container(
+                                        margin: EdgeInsets.all(1),
+                                        width: 60,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 0, vertical: 2),
+                                        child: Center(
+                                          child: AutoSizeText(
+                                            e.getStatus().tr(),
+                                            maxLines: 1,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white),
+                                          ),
+                                        )),
+                                  ),
+                                  const Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0,right: 20,top: 10),
+                                    child: GestureDetector(
+                                        onTap: () async {
+                                          var cancelChoice=await    showDialog<bool?>(context: context, builder:(context) =>  AlertDialog(title: Text('cancelConfirmationTitle'.tr()),
+                                            content: Text('cancelConfirmationBody'.tr()),
+                                            actions: [
+                                              TextButton(onPressed: () {
                                                 Navigator.pop(context,false);
                                               }, child: Text('no'.tr())),
-                                                TextButton(onPressed: () {
+                                              TextButton(onPressed: () {
                                                 Navigator.pop(context,true);
                                               }, child: Text('yes'.tr())),
-                                              ],
-                                            ));
-                                        if(cancelChoice!=null && cancelChoice)
+                                            ],
+                                          ));
+                                          if(cancelChoice!=null && cancelChoice)
                                             prov.cancelAnAppointment(e,context);
-                                          },
-                                          child: Text('cancel'.tr(),  style: const TextStyle(color: Colors.red,fontSize: 13 ),)),
-                                    )
+                                        },
+                                        child: Text('cancel'.tr(),  style: const TextStyle(color: Colors.red,fontSize: 13 ),)),
+                                  )
 
-                                  ],
-                                ),
+                                ],
                               ),
+                            ),
 
-                            ],
-                          )))
-                      .toList(),
-                )
+                          ],
+                        )))
+                        .toList(),
+                  ),
+                ),
+
               ],
             );
           },

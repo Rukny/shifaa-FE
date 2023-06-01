@@ -62,7 +62,7 @@ class ProfilePage extends StatelessWidget {
                               child:   CircleAvatar(
                                 radius: 47,
                                 backgroundColor: Colors.transparent,
-                                foregroundImage:prov.patient?.user.gender.toLowerCase()=="male"? AssetImage('assets/images/avatar.png'): AssetImage('assets/images/female.png'),
+                                foregroundImage:prov.patient?.user.gender.toLowerCase()=="male"? AssetImage('assets/images/male.png'): AssetImage('assets/images/female.png'),
                               ),
                             ),
                           ],

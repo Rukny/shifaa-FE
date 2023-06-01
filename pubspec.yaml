@@ -86,6 +86,7 @@ dependencies:
   location: ^4.4.0
   animated_react_button: ^0.0.4
   dartdoc: ^6.2.2
+  firebase_crashlytics: ^3.3.2
 
 
 

@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
@@ -29,7 +31,7 @@ import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  initializeDateFormatting();
+  await initializeDateFormatting();
 
   await EasyLocalization.ensureInitialized();
 
@@ -46,6 +48,16 @@ void main() async {
   bool doctorLoggedIn = await LocalStorage.checkIfValueExist('doctorId');
   Future.delayed(Duration(seconds: 2))
       .whenComplete(() => FlutterNativeSplash.remove());
+
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true,);
+    return true;
+  };
+
   runApp(Phoenix(
     child: EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],

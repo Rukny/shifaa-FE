@@ -85,7 +85,7 @@ class CentersPage extends StatelessWidget {
                             radius: 32,
                             backgroundColor: Colors.transparent,
                             foregroundImage:
-                                AssetImage('assets/images/doctors2.png'),
+                                AssetImage('assets/logoc.png'),
                           ),
                         ],
                       ),

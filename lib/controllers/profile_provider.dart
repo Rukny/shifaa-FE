@@ -44,7 +44,8 @@ final   RoundedLoadingButtonController btnController=RoundedLoadingButtonControl
     body.forEach((key, value) => print( "$key ${value.runtimeType}"));
     var res= await Patient.patchUser(body);
     if(res){
-      context.read<UserProvider>().init(context);
+     await context.read<UserProvider>().init(context);
+     patient=context.read<UserProvider>().patient;
       btnController.success();
       isEditing=false;
       notifyListeners();

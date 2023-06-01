@@ -2,6 +2,7 @@
 import 'dart:developer';
 
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
@@ -73,6 +74,8 @@ class UserProvider extends ChangeNotifier{
     await User.updateFcmToken();
     notifyListeners();
     log('setPatient success');
+    FirebaseCrashlytics.instance.setUserIdentifier("user is patient user id ${pat.id} ${pat.user.nameEn}");
+
   }
   setDoctor(Doctor doc) async{
 
@@ -81,10 +84,12 @@ class UserProvider extends ChangeNotifier{
     await LocalStorage.storeValue('doctor', doc.toRawJson());
     await LocalStorage.storeValue('userId', doc.user.id.toString());
     await User.updateFcmToken();
+    FirebaseCrashlytics.instance.setUserIdentifier("user is patient user id ${doc.id} ${doc.user.nameEn}");
+
     notifyListeners();
   }
 
-  void init(BuildContext context) async{
+    init(BuildContext context) async{
 
   try {
     var dId=  await LocalStorage.retrieveValue('doctorId');

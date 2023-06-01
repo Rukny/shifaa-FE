@@ -22,6 +22,8 @@
   "answersCount":"Plus {} other answers!",
   "submitAppointment": "Submit Appointment",
   "since": "{} hours ago",
+  "sinceDays": "{} days ago",
+  "sinceMinutes": "{} minute(s) ago",
   "clear": "Clear",
   "profile": "Profile",
   "appointments": "Appointments",
@@ -98,5 +100,9 @@
   "upcoming": "Upcoming",
   "previous": "Previous",
   "appointmentCancelSuccess": "Appointment has been cancelled successfully",
-  "appointmentCancelFailed": "Appointment cancellation has failed"
+  "appointmentCancelFailed": "Appointment cancellation has failed",
+  "success": "Question has been added succesfully",
+  "titleLabel": "Title",
+  "questionLabel": "Question"
+  
 }

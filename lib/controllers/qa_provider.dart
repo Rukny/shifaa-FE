@@ -18,7 +18,7 @@ class QaProvider extends ChangeNotifier{
   List<Question>? filteredQuestions;
 final TextEditingController textEditingController=TextEditingController();
 
-  String selectedSort='all';
+  String selectedSort='recent';
   handleSearch(String p0, BuildContext context) {
     selectedSpecialty=specialities!.firstWhere((element) => element.getName(context)==p0);
     HandleQuestions();
@@ -32,9 +32,9 @@ final TextEditingController textEditingController=TextEditingController();
     log('init centersDetailsprovider');
     specialities=await Specialty.getSpecialities();
 
-    questions=await Question.getQuestions();
+    questions=await Question.getQuestions() as List<Question>;
     filteredQuestions=List.from(questions!);
-      notifyListeners();
+    HandleQuestions();
 
 
   }

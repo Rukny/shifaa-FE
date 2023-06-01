@@ -80,7 +80,14 @@ class QaBox extends StatelessWidget {
                                   ),
                                 ],
                               ), Text(question.getStringDate(context),style: const TextStyle(color: Colors.white,fontSize: 14),),
+
+                                 if( question.createDate.difference(DateTime.now()).inMinutes<60)
+                                   Text('sinceMinutes'.tr(args: [ question.createDate.difference(DateTime.now()).inHours.toString()]),style: TextStyle(fontSize: 13)),
+
+                                if(DateTime.now().difference(question.createDate).inHours>1 && DateTime.now().difference(question.createDate).inHours<48)
                                  Text('since'.tr(args: [ DateTime.now().difference(question.createDate).inHours.toString()]),style: TextStyle(fontSize: 13)),
+                                 if(DateTime.now().difference(question.createDate).inHours>48)
+                                 Text('sinceDays'.tr(args: [ DateTime.now().difference(question.createDate).inDays.toString()]),style: TextStyle(fontSize: 13)),
 
 
                               ],)
